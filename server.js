@@ -9,6 +9,7 @@ const { required } = require("nodemon/lib/config");
 const todoController = require("./controllers/todoController");
 const todomodel = require("./models/todoModel");
 
+const PORT = process.env.PORT || 9009
 app.use(express.json());
 
 app.get("/",(request,response)=>{
@@ -55,8 +56,8 @@ app.get("/todo/:Id",todoController.getTodoById);
 app.get("/todo",todoController.getAllTodo);
 
 // listening to the request on localhost par 9009 
-app.listen(9009,() => {
-    console.log("My Server is Up and running on port 3000");
+app.listen(PORT,() => {
+    console.log("My Server is Up and running on port",PORT);
     // connecting to the database
     mongoose.connect(process.env.DB_URL).then(function(){
         console.log("DataBase is connected");
